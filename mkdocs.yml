@@ -1,0 +1,63 @@
+site_name: Puertos de Red
+docs_dir: "md"
+site_dir: "docs"
+
+theme:
+  name: 'material'
+  palette: # cambiar entre el modo claro al oscuro con botón
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Canvia a mode oscur
+
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Canvia a mode clar
+
+  font:
+    text: 'Roboto, sans-serif'
+    code: 'Courier New, monospace'
+
+  icon:
+    repo: 'fontawesome/brands/github'
+
+  features:
+    - navigation.top
+    - content.code.copy # Añadir botón copiar código
+    - content.code.annotate        
+
+nav:
+    - Home: index.md
+    - Puertos:
+      - 1 - Definición: 1-Puertos/definicion.md
+      - 2 - Puerto TCP/UDP: 1-Puertos/puerto_tcp_udp.md
+      - 3 - Puertos de la Capa de Red: 1-Puertos/capa_red.md
+      - 4 - Tipos de puertos: 1-Puertos/tipos_puertos.md
+    - Seguridad conexiones:
+      - 1 - Mejoras en los puertos: 2-Seguridad/mejoras_puertos.md
+      - 2 - Seguridad para abrir puertos: 2-Seguridad/seguridad_abrir_puertos.md
+      - 3 - Peligros en las conexiones: 2-Seguridad/peligro_conexiones.md
+    - About: about.md
+
+
+
+extra_css:
+  - css/extra.css
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+
+  - pymdownx.highlight: # Para formatear código y resaltar la sintaxis y los números de línea.
+      linenums: true
+
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+

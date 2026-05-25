@@ -1,0 +1,22 @@
+
+img {
+  width: 50%;
+  border: 3px solid green;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+p {
+  text-align: justify;
+  hyphens: auto;
+}
+h2 {
+  color: purple; /* morado */
+  font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+h3 {
+  color: rgb(150, 0, 200);
+  text-decoration: underline;
+  margin-left: 20px; /* añade sangría */
+}
