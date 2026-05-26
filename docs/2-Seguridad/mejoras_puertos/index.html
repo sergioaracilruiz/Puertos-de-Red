@@ -1,0 +1,1022 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../1-Puertos/tipos_puertos/">
+      
+      
+        <link rel="next" href="../seguridad_abrir_puertos/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>1 - Mejoras en los puertos - Puertos de Red</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto,+sans-serif:300,300i,400,400i,700,700i%7CCourier+New,+monospace:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto, sans-serif";--md-code-font:"Courier New, monospace"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mejoras-en-los-puertos-tcpudp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Puertos de Red" class="md-header__button md-logo" aria-label="Puertos de Red" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Puertos de Red
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1 - Mejoras en los puertos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Canvia a mode oscur"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Canvia a mode oscur" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Canvia a mode clar"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Canvia a mode clar" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Puertos de Red" class="md-nav__button md-logo" aria-label="Puertos de Red" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Puertos de Red
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Puertos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Puertos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-Puertos/definicion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 - Definición
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-Puertos/puerto_tcp_udp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 - Puerto TCP/UDP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-Puertos/capa_red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 - Puertos de la Capa de Red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-Puertos/tipos_puertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 - Tipos de puertos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguridad conexiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Seguridad conexiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 - Mejoras en los puertos
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 - Mejoras en los puertos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mejoras-en-los-puertos-tcpudp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mejoras en los puertos TCP/UDP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diferentes-estados-de-los-puertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferentes estados de los puertos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diferencias-de-rendimiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferencias de rendimiento
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-es-importante-abrir-puertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por qué es importante abrir puertos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Por qué es importante abrir puertos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jugar-por-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jugar por Internet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#descargas-p2p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descargas P2P
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seguridad_abrir_puertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 - Seguridad para abrir puertos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../peligro_conexiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 - Peligros en las conexiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ampliación
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ampliación
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3-Ampliacion-DNS-ARP/borrar_dns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 - Borrar DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3-Ampliacion-DNS-ARP/borrar_arp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 - Borrar ARP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mejoras-en-los-puertos-tcpudp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mejoras en los puertos TCP/UDP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diferentes-estados-de-los-puertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferentes estados de los puertos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diferencias-de-rendimiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferencias de rendimiento
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-es-importante-abrir-puertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por qué es importante abrir puertos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Por qué es importante abrir puertos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jugar-por-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jugar por Internet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#descargas-p2p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descargas P2P
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset"><a class="md-content__button md-icon" download href="mejoras_puertos.pdf" title="PDF"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 10.5h1v3h-1v-3m-5 1h1v-1H7v1M20 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2M9.5 10.5A1.5 1.5 0 0 0 8 9H5.5v6H7v-2h1a1.5 1.5 0 0 0 1.5-1.5v-1m5 0A1.5 1.5 0 0 0 13 9h-2.5v6H13a1.5 1.5 0 0 0 1.5-1.5v-3m4-1.5h-3v6H17v-2h1.5v-1.5H17v-1h1.5V9z"></path></svg></a>
+                
+                  
+
+
+
+  <h1>1 - Mejoras en los puertos</h1>
+
+<h2 id="mejoras-en-los-puertos-tcpudp">Mejoras en los puertos TCP/UDP</h2>
+<p>Como puedes ver, los puertos TCP y UDP son una parte fundamental en Internet hoy en día. Estos se han utilizado ampliamente para las comunicaciones, durante décadas. Pero a pesar de que se ha demostrado que son eficaces y confiables para tal efecto, es muy importante que continúen evolucionando para poder adaptarse a los cambios y demandas actuales. Esto se debe al aumento exponencial de las aplicaciones que los requiere, así como para los servicios en línea que también son cada vez más.</p>
+<p>En el caso de <strong>TCP, alguna evolución puede pasar por las mejoras en la eficiencia y velocidad de transferencia de los datos</strong>. Para ello muchos desarrolladores exploran diferentes técnicas como puede ser la segmentación y la multiplexación. Estos mejoran los flujos de datos, para así optimizar la transmisión cuando se trata de grandes volúmenes de datos. Por otro lado, también se trabaja en mecanismos para poder controlar la congestión de la red. De forma que esta se hace más efectiva, y garantiza un rendimiento lo más óptimo posible en todos los casos.</p>
+<p>En el caso del protocolo <strong>UDP, este se ha utilizado mucho en aplicaciones donde se requiere una comunicación muy rápida</strong>. Pueden ser videojuegos o transmisiones en tiempo real. <strong>En cambio, está falto de mecanismos de control para prevenir errores</strong>, y la retransmisión de paquetes limita sus aplicaciones en algunos contextos. Por lo cual una posible evolución en este aspecto, podría ser el implicar la incorporación de mecanismos más selectivos para el control de errores y retransmisión. Lo cual puede permitir que se utilice en aplicaciones donde es muy importante mantener una integridad muy alta en los datos.</p>
+<p>Por otro lado, algo en lo que siempre se está evolucionando y mejorando es la seguridad. En los tiempos que corren los datos que se manejan en Internet son más privados que nunca, por lo cual la seguridad es un aspecto que no se puede olvidar nunca. Pero esto es algo que ya se aplica a prácticamente cualquier sistema ya en uno, o en desarrollo.</p>
+<h2 id="diferentes-estados-de-los-puertos">Diferentes estados de los puertos</h2>
+<p>Para determinar el estado de los puertos, podemos utilizar tres términos los cuales varían en función de la configuración de los mismos.</p>
+<ul>
+<li><strong>Puertos cerrados</strong>: Cuando la comunicación es rechazada completamente, por lo cual no generan ningún tráfico entrante o saliente.</li>
+<li><strong>Puertos filtrados</strong>: Todo el tráfico que transcurre por estos, es filtrado por aplicaciones de seguridad como los firewall.</li>
+<li><strong>Puertos abiertos</strong>: Cuando un servicio está escuchando en este puerto, y es accesible desde el exterior.</li>
+</ul>
+<h2 id="diferencias-de-rendimiento">Diferencias de rendimiento</h2>
+<p>Con TCP estamos ante un protocolo orientado a la conexión. Esto quiere decir que establece la conexión entre dos dispositivos, previamente a enviar los datos. Una vez esta está creada, TCP utiliza procesos de confirmación para poder garantizar que todos los datos se entreguen sin errores y en el orden correcto. Por lo cual es un protocolo confiable y seguro que se utiliza para la transmisión de datos críticos y sensibles, como la información financiera o los correos electrónicos. En cambio, estos procesos de confirmación y verificación de errores tienen un impacto significativo en el rendimiento de la red.</p>
+<p>Por lo general, <strong>TCP es más lento que UDP y requiere más ancho de banda</strong>. Esto ocurre porque cada paquete debe ser confirmado antes de que se envíe el siguiente, aumentando así la cantidad de tiempo que se tarda en realizar los envíos. Al cual tendremos que sumar, los procesos de confirmación.</p>
+<p>Por otro lado, con UDP estamos ante un protocolo sin conexión que no requiere una conexión previa entre los dispositivos antes de enviar datos. Esto quiere decir que los paquetes se envían inmediatamente y sin confirmación de recepción.</p>
+<p>Esto hace que estemos ante un protocolo rápido y eficiente que se utiliza para aplicaciones en tiempo real, como el streaming de video y audio, videojuegos o videollamadas. Pero a pesar de su rapidez, se trata de un sistema que es menos confiable que TCP. Esto ocurre porque no dispone de una confirmación de recepción, y tampoco contienen mecanismos de corrección de errores. Estos paquetes, se pueden perder o incluso llegar en un orden que no es el adecuado al envío que se ha realizado. Por lo cual puede afectar a la calidad de los datos que se han transmitido, siendo este el motivo por el cual se descarta para otro tipo de comunicaciones.</p>
+<p>En definitiva, hay que tener claro que, en términos de rendimiento puro, lo cierto es que los puertos UDP son los que ofrecen una mayor eficiente, siempre en comparación con los puertos TCP. Y todo porque este no pone una conexión antes de la transmisión en sí, por lo que los paquetes se envían de una forma más rápida y con una mejor latencia. Esto hace que, en servicios como los de almacenamiento en la nube en tiempo real, se use más el otro protocolo. Al igual que en otras opciones como videojuegos o transmisiones de vídeo en directo.</p>
+<h2 id="por-que-es-importante-abrir-puertos">Por qué es importante abrir puertos</h2>
+<p>Hemos mostrado los principales puertos tanto TCP como UDP. Ahora vamos a hablar de por qué en ocasiones es importante abrir determinados puertos. Lo es para que la conexión pueda pasar correctamente y lograr así una buena velocidad, evitar cortes y no tener problemas para acceder a ciertos servicios.</p>
+<h3 id="jugar-por-internet">Jugar por Internet</h3>
+<p>Un ejemplo claro es para jugar por Internet. Los juegos utilizan determinados puertos para poder establecer una conexión. Para que esa conexión sea veloz y no aparezcan cortes, es necesario saber qué puertos utiliza cada juego y abrirlos en el router. Esto evitará problemas o que incluso no puedas entrar en una partida determinada. Esto es algo que puede ser necesario tanto a la hora de jugar en ordenador como también a través de videoconsolas. Debes informarte bien sobre qué puertos utiliza cada juego y si es necesario o no abrirlos. En algunos routers incluso verás puertos predeterminados en la configuración para abrirlos fácilmente para determinados juegos populares.</p>
+<p>Videoconsolas como la PS4, PS5 o xBox pueden requerir de abrir un rango de puertos específico para poder jugar a determinados juegos sin que haya problemas. Podrás encontrar mucha información en Internet, en foros especializados o en la propia página de los videojuegos, donde verás cuáles debes abrir y así poder configurar correctamente tu router.</p>
+<p>En cuanto al puerto que los videojuegos van a utilizar, la elección es un proceso crítico. Y lo cierto es que de forma constante es muy incomprendido ante la creación de un videojuego online. En muchos casos, <strong>los desarrolladores tienen la capacidad y libertad de poder seleccionar los puertos que van a utilizar</strong> para sus servicios online y poder sacar el juego a la comunidad. A menudo, se eligen puertos muy específicos por diferentes razones. Algunos de ellos son bien conocidos y están asociados con un tráfico muy particular de la red. Como puede ser el puerto 80 o el 443. En cambio <strong>para evitar todo tipo de conflictos con otros servicios, suelen elegir puertos en rangos de entre 1024 y 49151</strong>. Lo cuales <strong><em>se conocen como puertos registrados</em></strong>.</p>
+<p>La elección de este puerto, también puede estar muy dictada por diferentes razones, como las convenciones de la industria del videojuego. Algunos juegos multijugador, pueden usar los mismos puertos para que la configuración sea mucho más sencilla para las redes de los jugadores. Y por supuesto, a la hora de resolver problemas también tendremos muchos videojuegos en el mismo puerto. Por lo cual sabemos más o menos hacia donde apuntar en todo caso.</p>
+<p>Cabe destacar, que los desarrolladores tienen capacidades para elegir el puerto. Pero es posible que no todos los juegos permitan a los jugadores modificar este parámetro para cambiar de puerto. Esto por lo general tiene sus razones, como puede ser la seguridad, la simplicidad de la conexión, o simplemente que el jugador tenga la experiencia de juego tal cual fue diseñada. Existen varias formas en las cuales los jugadores pueden configurar el router para que en juego funcione mejor. Pero lo más sensato en estos casos, es acudir a la página oficial de la desarrolladora, donde encontraremos en muchas ocasiones la información necesaria con respecto al puerto que utilizan sus videojuegos.</p>
+<h3 id="descargas-p2p">Descargas P2P</h3>
+<p>Algo similar ocurre al utilizar aplicaciones de <strong>descargas P2P</strong>. Estos programas van a conectarse a determinados puertos para establecer la conexión. Si esos puertos están cerrados, se produciría un cuello de botella y la velocidad de las descargas sería muy limitada y podrías tener problemas para bajar archivos correctamente.</p>
+<p>Por ejemplo para usar BitTorrent o uTorrent será necesario tener los puertos abiertos correctamente. En algunos casos no será necesario y no notarás diferencia, pero en otras ocasiones sí que podrás ver que los archivos se descargan mucho más rápido. Aplicaciones de descargas P2P clásicas como eMule incluso mostraban una señal que indicaba que los puertos estaban cerrados y la velocidad de descarga muy limitada.</p>
+<p>Especialmente en la descarga de archivos es cuando más interesa que la aplicación aproveche al máximo la capacidad que tiene nuestra conexión. Esto puede ser determinante de cara a que una descarga tarde más o tarde menos en completarse.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1063 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../mejoras_puertos/">
+      
+      
+        <link rel="next" href="../peligro_conexiones/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>2 - Seguridad para abrir puertos - Puertos de Red</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto,+sans-serif:300,300i,400,400i,700,700i%7CCourier+New,+monospace:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto, sans-serif";--md-code-font:"Courier New, monospace"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#seguridad-para-abrir-puertos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Puertos de Red" class="md-header__button md-logo" aria-label="Puertos de Red" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Puertos de Red
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2 - Seguridad para abrir puertos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Canvia a mode oscur"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Canvia a mode oscur" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Canvia a mode clar"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Canvia a mode clar" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Puertos de Red" class="md-nav__button md-logo" aria-label="Puertos de Red" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Puertos de Red
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Puertos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Puertos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-Puertos/definicion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 - Definición
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-Puertos/puerto_tcp_udp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 - Puerto TCP/UDP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-Puertos/capa_red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 - Puertos de la Capa de Red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-Puertos/tipos_puertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 - Tipos de puertos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguridad conexiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Seguridad conexiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mejoras_puertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 - Mejoras en los puertos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 - Seguridad para abrir puertos
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 - Seguridad para abrir puertos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#seguridad-para-abrir-puertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seguridad para abrir puertos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-algunos-puertos-tcp-y-udp-son-peligrosos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por qué algunos puertos TCP y UDP son peligrosos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#puertos-de-servidores-mas-hackeados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Puertos de servidores más hackeados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-es-muy-importante-revisar-los-puertos-udp-abiertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por qué es muy importante revisar los puertos UDP abiertos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Por qué es muy importante revisar los puertos UDP abiertos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#asegurar-el-protocolo-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Asegurar el protocolo DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcp-tambien-utiliza-el-protocolo-udp-hay-que-protegerlo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCP también utiliza el protocolo UDP, hay que protegerlo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-proteger-el-protocolo-snmp-y-evitar-ataques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo proteger el protocolo SNMP y evitar ataques
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../peligro_conexiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 - Peligros en las conexiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ampliación
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ampliación
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3-Ampliacion-DNS-ARP/borrar_dns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 - Borrar DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3-Ampliacion-DNS-ARP/borrar_arp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 - Borrar ARP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#seguridad-para-abrir-puertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seguridad para abrir puertos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-algunos-puertos-tcp-y-udp-son-peligrosos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por qué algunos puertos TCP y UDP son peligrosos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#puertos-de-servidores-mas-hackeados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Puertos de servidores más hackeados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-es-muy-importante-revisar-los-puertos-udp-abiertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por qué es muy importante revisar los puertos UDP abiertos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Por qué es muy importante revisar los puertos UDP abiertos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#asegurar-el-protocolo-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Asegurar el protocolo DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcp-tambien-utiliza-el-protocolo-udp-hay-que-protegerlo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCP también utiliza el protocolo UDP, hay que protegerlo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-proteger-el-protocolo-snmp-y-evitar-ataques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo proteger el protocolo SNMP y evitar ataques
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset"><a class="md-content__button md-icon" download href="seguridad_abrir_puertos.pdf" title="PDF"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 10.5h1v3h-1v-3m-5 1h1v-1H7v1M20 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2M9.5 10.5A1.5 1.5 0 0 0 8 9H5.5v6H7v-2h1a1.5 1.5 0 0 0 1.5-1.5v-1m5 0A1.5 1.5 0 0 0 13 9h-2.5v6H13a1.5 1.5 0 0 0 1.5-1.5v-3m4-1.5h-3v6H17v-2h1.5v-1.5H17v-1h1.5V9z"></path></svg></a>
+                
+                  
+
+
+
+  <h1>2 - Seguridad para abrir puertos</h1>
+
+<h2 id="seguridad-para-abrir-puertos">Seguridad para abrir puertos</h2>
+<p>Siempre y cuando realizamos aperturas de puertos, es muy recomendable contar con algún sistema  de seguridad que sea capaz de analizar el tráfico que fluye por estos en tiempo real. Los ataques a los que nos exponemos al abrir puertos, pueden ser muy peligrosos al proporcionar malware, accesos no autorizados, y ataques DDoS que causan denegaciones de servicio.</p>
+<p>Antes de abrir un puerto, debemos estar seguros que realmente es necesario abrirlo para el correcto funcionamiento de alguna aplicación o servicio. Por la contra, <strong>si estos no son necesarios, lo más recomendable es dejarlos cerrados, de forma que nada se pueda colar por ellos y generar algún tipo de problema como el robo de información</strong>, o una infección del dispositivo.</p>
+<p>Por tanto, como has podido ver son varias las circunstancias en las que vas a tener que <strong>abrir los puertos</strong> del router. Esto permitirá que <strong>tu conexión funcione mejor, con más velocidad y evitar ciertos problemas que puedan afectarte a la hora de jugar, descargar o comunicarte a través de aplicaciones</strong>. Ahora bien, si realmente no necesitas tener los puertos abiertos lo ideal, <strong>por seguridad, es que permanezcan cerrados</strong>. Abre únicamente aquellos que sí que vas a necesitar que estén abiertos y así evitarás riesgos innecesarios que puedan afectar a tu seguridad en la red.</p>
+<h2 id="por-que-algunos-puertos-tcp-y-udp-son-peligrosos">Por qué algunos puertos TCP y UDP son peligrosos</h2>
+<p>En la capa de transporte del modelo TCP/IP, disponemos de dos tipos de protocolos: TCP y UDP. Ambos se utilizan constantemente por los diferentes programas y protocolos de la capa de aplicación, como el puerto 80 y 443 para navegar por la web, el puerto 22 para el protocolo SSH, o el popular puerto 1194 para las VPN con OpenVPN. Algunos de estos puertos son bastante peligrosos si no los filtramos correctamente con un firewall, porque podrían realizarnos diferentes tipos de ataques e incluso hackearnos nuestro equipo.</p>
+<p><img alt="Ataque_DDoS-tipos" src="../../img/Ataque_DDoS-tipos.jpg" /></p>
+<p>Normalmente cuando abrimos puertos en nuestros routers, es pensando en algún beneficio que estos nos van a dar, bien sea para que alguna aplicación funcione, o mejorar el rendimiento de otra. Pero estos pueden conllevar algunos peligros, los cuales pueden comprometer no solo nuestro equipo, si no todos los dispositivos que se encuentran en la misma red. Si estos puertos se dejan sin supervisión, los ataques a través de estos aumentan considerablemente.</p>
+<ul>
+<li><strong>Malware, troyanos y accesos</strong>: Los puertos abiertos facilitan la comunicación con muchos servicios de internet, y entre ellos los maliciosos. Malware y troyanos son los que más aprovechan este tipo de configuraciones para colarse en las redes y ejecutar servicios no autorizados en los puertos. Algunos de ellos, solo se pueden detectar realizando escaneos muy detallados del sistema. Entre otras cosas, puede quedar expuesta información sensible, robos de credenciales, o que nuestro equipo se pueda manejar de forma remota por un atacante.</li>
+<li><strong>Exposición de vulnerabilidades</strong>: Las herramientas de análisis de redes entran aquí en juego, pues los atacantes las utilizan para crear listados de los puertos abiertos. Luego pueden comunicarse con los servicios que escuchan en los puertos abiertos para encontrar información de nuestro equipo. Todo esto, puede servir para posteriores ataques.</li>
+<li><strong>Ataques DDoS</strong>: Los puertos abiertos facilitan la transferencia de paquetes para toda aquella entidad que use alguno de los puertos. Si una de ellas establece comunicación, ninguna otra podrá usar ese puertos en ese momento, lo cual puede generar ataques de denegación de servicio, lo cual haría que no sea accesible.</li>
+</ul>
+<h2 id="puertos-de-servidores-mas-hackeados">Puertos de servidores más hackeados</h2>
+<p>Como sabemos, los servidores son elementales para las conexiones de Internet. Son imprescindibles para juegos, comunicaciones, correo electrónico, páginas web en general. Son muchos los puertos que hay en la red y que permiten acceder a estos servidores, así como al contenido en general. Hay miles de puertos y muchos de ellos tienen funciones concretas. Algunos pueden estar abiertos para que alguna determinada herramienta funcione. En este artículo vamos a ver cuáles son los <strong>puertos que suelen ser hackeados</strong> más frecuentemente.</p>
+<p>Hay determinados protocolos que utilizan un puerto generalmente. Algunos servidores están diseñados para transferir archivos, otros acceder a equipos remotos, intercambiar mensajes, jugar por Internet. Como decimos, hay muchos puertos que están presentes en la red. Hay determinados protocolos que normalmente utilizan uno en concreto. Vamos a ver cuáles son los más atacados, poniéndolos en orden.</p>
+<ul>
+<li><strong>FTP-21</strong>: sin duda uno de los puertos más populares es el 21. Es el que corresponde al protocolo FTP. Permite la transferencia de archivos entre diferentes equipos que estén conectados a una red TCP. Generalmente este protocolo utiliza el puerto 21. Es utilizado para autenticarse en un servidor de forma remota. Los piratas informáticos, dentro de las opciones donde ponen sus miras, tienen muy en cuenta este puerto concreto.</li>
+<li><strong>SSH-22</strong>: otro puerto muy utilizado es el 22 por el protocolo SSH. Está diseñado para controlar y modificar servidores de forma remota a través de la red. Tiene un mecanismo que permite autenticar un usuario y fue creado como un sustituto seguro para Telnet. Hoy en día es uno de los objetivos principales de los ciberdelincuentes. A fin de cuentas, como decimos, ponen sus miras en aquello que es más utilizado y donde por tanto pueden tener más éxito.</li>
+<li><strong>Telnet-23</strong>: aunque se trata de un protocolo antiguo, todavía sigue estando muy presente. Los piratas informáticos pueden poner sus miras también en este <strong>puerto 23</strong>. Es una herramienta que permite conectarnos en remoto a otro equipo. Muy útil por ejemplo para llevar a cabo una reparación a distancia. Como decimos, es un protocolo antiguo y ha quedado algo en desuso. Precisamente SSH llegó para mejorar la seguridad.</li>
+<li><strong>SMTP-25</strong>: SMTP viene de <strong>Simple Mail Transfer Protocol</strong>. Sirve para el intercambio de mensajes a través del correo electrónico entre diferentes dispositivos conectados a la red. Por ejemplo podemos mandar un mensaje de un ordenador a un móvil o viceversa. Generalmente utiliza el puerto 25 del router y es, una vez más, uno de los más atacados por los ciberdelincuentes.</li>
+<li><strong>HTTP-80</strong>: es otro protocolo básico en la red. HTTP es el que nos permite transferir información en la web. Indispensable para navegar por Internet y que las páginas nos muestren el contenido correctamente. Por defecto el puerto que suelen utilizar es el 80 y se une así a la lista de los más atacados.</li>
+<li><strong>HTTPS-443</strong>: el <strong>protocolo HTTPS</strong> llegó para hacer que las conexiones fueran más seguras. Consiste básicamente en añadir un cifrado al protocolo HTTP. De esta forma, cuando navegamos por una página web que use este protocolo nuestros datos estarían protegidos, sin que pudieran ser expuestos para que posibles intrusos los roben. Utiliza de serie el puerto 443 y también es otro de los que suelen atacar con más frecuencia los piratas informáticos en la red.</li>
+<li><strong>POP3-110</strong>: el último puerto que queremos mostrar en esta lista de los más hackeados es el 110, que corresponde generalmente al protocolo POP3. Es el que utilizan los clientes locales de correo electrónico para obtener los mensajes que se almacenan en un servidor remoto.</li>
+</ul>
+<p>En definitiva, estos son los puertos de servidores más hackeados. Como vemos son algunos de los más utilizados en el día a día de los usuarios particulares y de empresas. Sirven generalmente para comunicarnos y que nuestros dispositivos puedan acceder a la información de forma remota.</p>
+<h2 id="por-que-es-muy-importante-revisar-los-puertos-udp-abiertos">Por qué es muy importante revisar los puertos UDP abiertos</h2>
+<p>Hay protocolos muy importantes que utilizan los puertos UDP para comunicarse, algunos de estos protocolos son el popular protocolo DNS (Domain Name System) y también el protocolo SNMP (Simple Network Management Protocol). Ambos protocolos utilizan unos puertos DNS por defecto que debemos cerrar si no los estamos utilizando, e incluso deberíamos controlarlos si es que sí estamos usando estos protocolos.</p>
+<h3 id="asegurar-el-protocolo-dns">Asegurar el protocolo DNS</h3>
+<p>Los servidores DNS suelen utilizar el puerto UDP 53, aunque también tenemos la posibilidad de usar otros puertos como el TCP 53, e incluso si hacemos uso de DNS over HTTPS o DNS over TLS, los puertos son diferentes y gobernados por TCP en lugar de UDP. <strong>El puerto 53 UDP es usado ampliamente para recibir las solicitudes DNS</strong>, y para responderlas, es fundamental que, si no tenemos un servidor DNS activado, bloqueemos a través del firewall cualquier tipo de comunicación entrante que utilice este puerto, ya que podríamos estar ante un escaneo de puertos para intentar conseguir información muy valiosa para posteriormente atacar dicho servidor.</p>
+<p><img alt="cambiar-dns-operadora" src="../../img/cambiar-dns-operadora.PNG" /></p>
+<p>En caso de tener configurado el servidor DNS, es muy importante también protegerlo correctamente con el firewall, para evitar los ataques DoS que podrían hacer que el servidor DNS dejase de responder, con los firewalls podríamos limitar el número de peticiones por segundo que podemos recibir, descartando todas las demás, e incluso realizando «baneos» de direcciones IP para que no nos envíen más información.</p>
+<p>Una herramienta realmente útil para proteger al servidor DNS de ataques DoS, es <a href="https://github.com/fail2ban/fail2ban">Fail2ban</a>. Esta herramienta nos sirve para analizar el log real del proceso, y en función del log, podrá detectar posibles ataques de denegación de servicio para posteriormente bloquear esas direcciones IP de origen en el firewall. De esta forma, Fail2ban protege al servidor DNS de una manera reactiva, en cuanto detecta un tráfico más alto de lo «normal», automáticamente le dirá al firewall que bloquee cualquier solicitud desde una determinada IP de origen, dejando al servidor DNS disponible para el resto de equipos.</p>
+<h3 id="dhcp-tambien-utiliza-el-protocolo-udp-hay-que-protegerlo">DHCP también utiliza el protocolo UDP, hay que protegerlo</h3>
+<p>Otro protocolo ampliamente utilizado es el popular protocolo <strong>DHCP (Dynamic Host Control Protocol)</strong>, un protocolo que nos proporciona de manera dinámica y automática las direcciones IP privadas en nuestra red local. Este protocolo hace uso de los <strong>puertos UDP 67/68</strong> para la recepción y el envío de información. Un posible atacante podría enviarnos continuamente DHCP Discover con el fin de saturar el servidor DHCP, o directamente escanear la red en busca del servidor DHCP para saber qué versión del proceso estamos utilizando y si existe alguna vulnerabilidad conocida para posteriormente explotarla.</p>
+<p>Como recomendación, si no vamos a usar el servidor DHCP, lo mejor es deshabilitar el proceso, y si lo utilizamos, debemos asegurarnos de que usamos la última versión disponible siempre y que se encuentra libre de vulnerabilidades.</p>
+<h3 id="como-proteger-el-protocolo-snmp-y-evitar-ataques">Cómo proteger el protocolo SNMP y evitar ataques</h3>
+<p>Otro protocolo ampliamente utilizado en redes es el <strong>protocolo SNMP</strong>. Este protocolo SNMP se encuentra en la <strong>capa de aplicación</strong> y permite el intercambio de información de administración entre dispositivos de red, además, el <strong>protocolo SNMP no solamente está en los PC, sino también en casi cualquier dispositivo de red</strong> como routers, switches gestionables, servidores, impresoras, módems e incluso en teléfonos VoIP. Gracias a este protocolo, los administradores de redes podrán monitorizar si existe algún tipo de problema, utilizando sistemas de monitorización como Nagios, Icinga2, Zabbix entre otros muchos que existen, y <strong>no solamente permite ver la configuración y monitorizar el estado de toda la red, sino que también permite realizar configuraciones de manera remota</strong>.</p>
+<p>Por la propia naturaleza del SNMP, es muy probable que este proceso esté funcionando con permisos de administrador en un servidor, PC o en tu router, ya que, si SNMP permite que se cambie la configuración de un host, es obligatorio que tenga permisos para ello. Actualmente existen dos versiones de SNMP ampliamente utilizas, la SNMPv2c que la podemos encontrar en la mayoría de dispositivos como routers, switches gestionables, módems y telefonía VoIP, y también la versión SNMPv3 que la encontramos en estos mismos dispositivos siempre que su firmware lo soporte. El protocolo SNMPv3 añade una gran cantidad de medidas de seguridad, incorpora autenticación con cifrado de los datos, y todas las comunicaciones van cifradas punto a punto para garantizar la confidencialidad, anteriormente con el protocolo SNMPv2c todo el tráfico de datos se realiza en texto claro.</p>
+<p><img alt="snmp-reconnaisance" src="../../img/snmp-reconnaisance.PNG" /></p>
+<p>Lo primero que tenemos que tener en cuenta para proteger adecuadamente SNMP, es que, <strong>si no lo vamos a utilizar, lo mejor que podemos hacer es deshabilitar el proceso, otra opción es la de bloquear los puertos correspondientes de UDP 161 y UDP 162 por completo en el firewall</strong>. Con estas dos acciones, evitaremos que cualquier tipo de vulnerabilidad que se encuentre en el servicio SNMP pueda ser explotada, ya que lo primero que hará un atacante es realizar un escaneo de puertos y comprobar si el servicio SNMP se encuentra activo. Además, no debemos olvidar que, aunque el SNMP esté en modo de solo lectura, es posible recibir un ataque de denegación de servicio si no está bien implementado este protocolo, tal y como ocurrió en el sistema operativo Cisco IOS hace años.</p>
+<p>Otra medida de seguridad que podemos tomar, es la de solamente responder a las direcciones IP que nosotros definamos, no obstante, UDP es un protocolo no orientado a conexión, por lo que realizar un IP spoofing es realmente sencillo, así que esta opción es un añadido más y no una solución completa a tomar. Si haces uso de SNMPv3, estarás protegido frente a este posible ataque.</p>
+<p>A nivel de firewall, si haces uso de iptables u otros firewalls, podemos crear un par de reglas para limitar el acceso al servidor SNMP de nuestro equipo, y también limitar la salida de información a otra dirección IP.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-s<span class="w"> </span>&lt;direccion<span class="w"> </span>ip&gt;<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>-m<span class="w"> </span>udp<span class="w"> </span>--dport<span class="w"> </span><span class="m">161</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+$<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-d<span class="w"> </span>&lt;direccion<span class="w"> </span>ip&gt;<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>-m<span class="w"> </span>udp<span class="w"> </span>--sport<span class="w"> </span><span class="m">161</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+</code></pre></div></td></tr></table></div>
+<p>Por supuesto, en el caso de usar versiones inferiores a SNMPv3, todas las comunicaciones van sin cifrar, aunque sí tenemos autenticación para la lectura y escritura en los diferentes hosts, por este motivo, es muy recomendable no tener accesible a la red de gestión cualquier equipo, ya que podría realizar un ataque Man in the Middle y capturar las credenciales de acceso RW de SNMP. Segmentar adecuadamente la red en VLANs es algo fundamental y que no debemos dejar de lado en el diseño y securización de la red. Con el protocolo SNMPv3 tendremos una buena autenticación y cifrado con criptografía, pero es susceptible a ataques de fuerza bruta o de diccionario para adivinar las claves de autenticación, sobre todo si estas claves son cortas en longitud, por lo que es recomendable usar claves largas. Por último, una muy buena recomendación de seguridad es hacer uso de SNMP dentro de un túnel SSH o directamente dentro de un túnel VPN, siempre que esto sea posible, claro.</p>
+<p>El mismo programa <em>Fail2ban</em> que os hemos recomendado anteriormente, también es capaz de proteger correctamente el protocolo SNMP frente a posibles ataques DoS que realice un atacante en la red.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

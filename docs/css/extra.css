@@ -1,0 +1,48 @@
+
+img {
+  width: 50%;
+  border: 3px solid green;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+
+/* Ajuste general de imágenes en móviles */
+.markdown-image {
+  display: block;
+  margin: 1rem auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ajustes específicos para pantallas pequeñas */
+@media (max-width: 768px) {
+  .markdown-image {
+    max-width: 90%;
+  }
+}
+
+
+
+p {
+  text-align: justify;
+  hyphens: auto;
+}
+h2 {
+  color: purple; /* morado */
+  font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+h3 {
+  color: rgb(150, 0, 200);
+  text-decoration: underline;
+  margin-left: 20px; /* añade sangría */
+}
+
+/*MkDocs-page-to-pdf Due to a Chromium bug, a blank page may appear at the end of the PDF. To fix this, 
+add the following CSS to your 
+body {
+    contain: strict;
+}
+    */

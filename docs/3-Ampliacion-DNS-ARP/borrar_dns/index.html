@@ -1,0 +1,1305 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../2-Seguridad/peligro_conexiones/">
+      
+      
+        <link rel="next" href="../borrar_arp/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>1 - Borrar DNS - Puertos de Red</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto,+sans-serif:300,300i,400,400i,700,700i%7CCourier+New,+monospace:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto, sans-serif";--md-code-font:"Courier New, monospace"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dns-flush-vaciar-la-cache-del-dns" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Puertos de Red" class="md-header__button md-logo" aria-label="Puertos de Red" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Puertos de Red
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1 - Borrar DNS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Canvia a mode oscur"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Canvia a mode oscur" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Canvia a mode clar"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Canvia a mode clar" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Puertos de Red" class="md-nav__button md-logo" aria-label="Puertos de Red" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Puertos de Red
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Puertos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Puertos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-Puertos/definicion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 - Definición
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-Puertos/puerto_tcp_udp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 - Puerto TCP/UDP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-Puertos/capa_red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 - Puertos de la Capa de Red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-Puertos/tipos_puertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 - Tipos de puertos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguridad conexiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Seguridad conexiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2-Seguridad/mejoras_puertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 - Mejoras en los puertos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2-Seguridad/seguridad_abrir_puertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 - Seguridad para abrir puertos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2-Seguridad/peligro_conexiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 - Peligros en las conexiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ampliación
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ampliación
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 - Borrar DNS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 - Borrar DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dns-flush-vaciar-la-cache-del-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNS flush: vaciar la caché del DNS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-el-dns-flush" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es el DNS flush?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-la-cache-del-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es la caché del DNS?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-es-recomendable-realizar-un-dns-flush-de-forma-regular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué es recomendable realizar un DNS flush de forma regular?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limpiar-la-cache-del-dns-asi-funciona" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limpiar la caché del DNS: así funciona
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rendimiento-del-equipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rendimiento del equipo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-limpiar-la-cache-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo limpiar la caché DNS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cómo limpiar la caché DNS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pasos-para-borrarla-en-windows-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pasos para borrarla en Windows 11
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pasos para borrarla en Windows 11">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desde-windows-powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desde Windows PowerShell
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-hacerlo-en-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo hacerlo en Linux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-realizar-la-limpieza-en-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo realizar la limpieza en Mac
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limpiar-la-cache-dns-en-navegadores-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limpiar la caché DNS en navegadores web
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Limpiar la caché DNS en navegadores web">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#en-mozilla-firefox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        En Mozilla Firefox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#en-google-chrome-y-opera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        En Google Chrome y Opera
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusiones-para-optar-por-borrar-la-cache-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusiones para optar por borrar la caché DNS
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../borrar_arp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 - Borrar ARP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dns-flush-vaciar-la-cache-del-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNS flush: vaciar la caché del DNS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-el-dns-flush" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es el DNS flush?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-la-cache-del-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es la caché del DNS?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-es-recomendable-realizar-un-dns-flush-de-forma-regular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué es recomendable realizar un DNS flush de forma regular?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limpiar-la-cache-del-dns-asi-funciona" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limpiar la caché del DNS: así funciona
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rendimiento-del-equipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rendimiento del equipo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-limpiar-la-cache-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo limpiar la caché DNS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cómo limpiar la caché DNS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pasos-para-borrarla-en-windows-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pasos para borrarla en Windows 11
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pasos para borrarla en Windows 11">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desde-windows-powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desde Windows PowerShell
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-hacerlo-en-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo hacerlo en Linux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-realizar-la-limpieza-en-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo realizar la limpieza en Mac
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limpiar-la-cache-dns-en-navegadores-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limpiar la caché DNS en navegadores web
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Limpiar la caché DNS en navegadores web">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#en-mozilla-firefox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        En Mozilla Firefox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#en-google-chrome-y-opera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        En Google Chrome y Opera
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusiones-para-optar-por-borrar-la-cache-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusiones para optar por borrar la caché DNS
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset"><a class="md-content__button md-icon" download href="borrar_dns.pdf" title="PDF"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 10.5h1v3h-1v-3m-5 1h1v-1H7v1M20 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2M9.5 10.5A1.5 1.5 0 0 0 8 9H5.5v6H7v-2h1a1.5 1.5 0 0 0 1.5-1.5v-1m5 0A1.5 1.5 0 0 0 13 9h-2.5v6H13a1.5 1.5 0 0 0 1.5-1.5v-3m4-1.5h-3v6H17v-2h1.5v-1.5H17v-1h1.5V9z"></path></svg></a>
+                
+                  
+
+
+
+  <h1>1 - Borrar DNS</h1>
+
+<p><img alt="DNS flush vaciar cache" src="../../img/dns_flush-vaciar_cache.png" /></p>
+<h2 id="dns-flush-vaciar-la-cache-del-dns">DNS flush: vaciar la caché del DNS</h2>
+<p>Los sistemas operativos como Windows almacenan en la caché del DNS entradas temporales sobre todas las páginas web visitadas. En cuanto a la información, solo es válida durante un periodo de tiempo determinado. Un DNS flush, es decir el vaciado de la caché, elimina los datos del sistema antes del tiempo límite.</p>
+<h2 id="que-es-el-dns-flush">¿Qué es el DNS flush?</h2>
+<p>El procedimiento de eliminar manualmente las entradas temporales de la caché de DNS se denomina DNS flush. Sin esta intervención directa, las entradas existirían hasta que el tiempo de vida predeterminado (“Time to live”, TTL) terminase.</p>
+<p>En cuanto al proceso de borrado, suele completarse mediante las herramientas que se encuentran en las líneas de comandos específicas del sistema: en los dispositivos Mac, por ejemplo, debes utilizar el terminal y el comando apropiado para la versión respectiva del sistema Apple. Si utilizas Windows, puedes realizar el DNS flush a través de CMD, el símbolo del sistema junto al comando “ipconfig /flushdns”.</p>
+<h2 id="que-es-la-cache-del-dns">¿Qué es la caché del DNS?</h2>
+<p>Para que los nombres de dominio como <code>www.ejemplo.com</code> se conviertan en <em>direcciones numéricas</em> se necesitan los llamados <a href="https://www.ionos.es/digitalguide/servidores/know-how/que-es-el-servidor-dns-y-como-funciona/">servidores DNS</a>. Por defecto, estos “servidores de nombres· entran en juego cada vez que el usuario intenta acceder a una página web a través de un ordenador. En caso de un gran número de visitantes, puede darse una sobrecarga del servidor y provocar el recurrente error "<a href="https://www.ionos.es/digitalguide/servidores/know-how/que-hacer-cuando-el-servidor-dns-no-responde/">el servidor DNS no responde</a>”.</p>
+<p>Por esta razón, los sistemas operativos como Windows y macOS dependen de su propia caché para interpretar las direcciones, la llamada caché del DNS, que almacena toda la información relevante para la resolución de nombres como la dirección IP, el nombre de host o la versión del protocolo. Si bien cada entrada es válida durante cierto período de tiempo. Dentro de este rango, las peticiones se responden directamente desde la caché sin tener que pasar por el servidor DNS.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota:</p>
+<p>Algunas aplicaciones como los navegadores web y los servidores de los proveedores de Internet también tienen su propia caché del DNS para acelerar la resolución de las direcciones.</p>
+</div>
+<h2 id="por-que-es-recomendable-realizar-un-dns-flush-de-forma-regular">¿Por qué es recomendable realizar un DNS flush de forma regular?</h2>
+<p>Hay tres razones en particular para poner a cero de forma regular el registro del DNS mediante una limpieza, independientemente del período real de validez de las entradas individuales:</p>
+<ol>
+<li><strong>Para ocultar el comportamiento de navegación</strong>: las direcciones listadas, incluyendo información adicional como el período de validez, ofrecen una visión general aproximada de las páginas web visitadas. Cuanto más amplio sea el almacenamiento de direcciones en la caché, más información estará disponible.</li>
+<li><strong>Como medida de seguridad contra ataques de terceros</strong>: si los ciberdelincuentes obtienen acceso a la caché del DNS, pueden manipular las entradas y, por ejemplo, redirigirlas a páginas web maliciosas. Este ataque, conocido como DNS spoofing, se utiliza para acceder a datos de inicio de sesión confidenciales, por ejemplo, en la banca online.</li>
+<li><strong>Para resolver problemas técnicos</strong>: el DNS flush puede eliminar problemas técnicos al abrir aplicaciones web. Por ejemplo, es posible que, debido a entradas obsoletas, se muestre una versión incorrecta de la página web visitada. Después del flush, la petición se dirige nuevamente al servidor DNS apropiado para recibir una respuesta y la conexión a la página web vuelve a funcionar de forma correcta.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Consejo:</p>
+<p>Puedes ver la caché del DNS actualmente almacenada en tu sistema en cualquier momento. En Windows, abre la línea de comandos, como con el flush DNS CMD, e introduce el comando <code>ipconfig /displaydns</code>.</p>
+</div>
+<h2 id="limpiar-la-cache-del-dns-asi-funciona">Limpiar la caché del DNS: así funciona</h2>
+<p>No hay ninguna regla que determine el momento perfecto para vaciar la caché del DNS, a menos que haya un problema técnico importante que pueda resolverse haciendo un vaciado de la caché. Si decides borrar la caché del DNS, el proceso es rápido y sencillo. Los <strong><em>usuarios de Windows</em></strong> pueden, por ejemplo, hacerlo de la siguiente manera:</p>
+<p><strong>Paso 1. Abrir la línea de comandos</strong></p>
+<p>En primer lugar, utiliza la combinación de teclas [Windows] + [R] para abrir el diálogo “Ejecutar”. A continuación, ejecuta el comando <code>cmd</code> para iniciar el sistema.</p>
+<p><strong>Paso 2. Flush DNS con “ipconfig /flushdns”</strong></p>
+<p>Utiliza las opciones del comando ipconfig en la línea de comandos para realizar el DNS flush a través del CMD. Ahora solo debes introducir el siguiente comando y confirmarlo con “Enter”:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ipconfig /flushdns
+</code></pre></div></td></tr></table></div>
+<p>Después de ejecutar el comando con éxito, recibirás un mensaje que te informará sobre el vaciado de la caché DNS de resolución.</p>
+<p><img alt="Comando_ipconfig-flushdns" src="../../img/Comando_ipconfig-flushdns.PNG" /></p>
+<div class="admonition note">
+<p class="admonition-title">Nota:</p>
+<p>No tienes que preocuparte de que un flush DNS tenga un efecto negativo a la hora de navegar por la red: solo el primer acceso a una página web después de restablecer la caché debería durar un poco más de lo normal.</p>
+</div>
+<h2 id="rendimiento-del-equipo">Rendimiento del equipo</h2>
+<p>Como puedes ver, <strong>la caché DNS es una función que se utiliza para mejorar las velocidades de navegación por Internet</strong>. Al acceder a los sitios web, el servidor resuelve el nombre del dominio en dirección IP. Esta es la información que se guarda en nuestro equipo. En todo caso, a pesar de que su función es mejorar el servicio y rendimiento, puede tener consecuencias negativas en algunos casos. Cuando pasa mucho tiempo donde navegamos por Internet sin limpiarla, el efecto puede ser totalmente, al contrario.</p>
+<p>A medida que se utiliza el equipo, <strong>la caché DNS se llena de información</strong>. En estos casos mucha será información válida, pero otra mucha <strong>puede estar totalmente obsoleta</strong>. Esto tiene algunas consecuencias negativas en el equipo, en el rendimiento que obtenemos cuando navegamos por Internet. Por eso se recomienda realizar limpiezas periódicas. Cuando esta información es eliminada, hacemos que el servidor DNS tenga que realizar de nuevo la resolución de nombres de dominio. Por lo cual, se mejorará la calidad de la navegación. Pero no solo afecta a esto, sino que al ordenador en sí también.</p>
+<p>Todo lo que este equipo contiene, consume recursos. Y como tal este consumo, aumentará poco a poco con el paso del tiempo si no se realiza algún tipo de mantenimiento como es el caso. Cuando esto ocurre, otras herramientas importantes pueden ver que su espació en el reparto de recursos es más pequeño. Por lo cual afectará de forma negativa a esta distribución, haciendo que algunas aplicaciones puedan funcionar más lentas, o que el equipo en sí se ralentice. En todo caso, esto es algo que no suele ocurrir a corto plazo. Estamos ante una memoria que guarda información con muy poco peso, por lo cual se suele tardar bastante en ver que puede ser un problema.</p>
+<h2 id="como-limpiar-la-cache-dns">Cómo limpiar la caché DNS</h2>
+<p>Para limpiar la caché DNS, es recomendable no solo hacerlo en el propio sistema operativo, sino también en los navegadores web que estemos utilizando, como Chrome o Firefox. Esto debemos tenerlo en cuenta ya que los navegadores también almacenan información en caché para no tener que preguntar continuamente al sistema operativo si tiene una resolución de nombres de dominio en caché. Son procesos diferentes.</p>
+<p>De no realizarse esté procedimiento, estas estarían en nuestro equipo hasta que el tiempo de vida predeterminado de las mismas termine (TTL "Time To Live").</p>
+<h3 id="pasos-para-borrarla-en-windows-11">Pasos para borrarla en Windows 11</h3>
+<p>También puedes borrar la caché DNS en Windows 11, el último sistema operativo de Microsoft. El proceso es muy similar y para ello tienes que ir a Inicio, entras en Terminal (aunque también puedes desde el Símbolo del sistema) y allí ejecutas el comando ipconfig /flushdns. Simplemente esperas a que aparezca el mensaje indicando que se ha vaciado correctamente la caché de resolución de DNS.</p>
+<p>Es un proceso rápido y sencillo, pero que podría ayudarte a solucionar ciertos problemas que aparezcan. Resetearás la caché DNS y comenzará a registrarla desde cero, por lo que borrará cualquier posible conflicto que haya podido aparecer. Para asegurarte de que todo ha ido bien, siempre que ejecutes este tipo de comandos es conveniente reiniciar el equipo.</p>
+<p>Una vez vuelvas a encender Windows 11, podrás acceder al navegador y comprobar si vuelve a funcionar con normalidad ese sitio web donde tenías problemas. Si era un fallo de la caché DNS, con total seguridad podrás entrar sin problemas.</p>
+<h4 id="desde-windows-powershell">Desde Windows PowerShell</h4>
+<p>No solamente tienes la alternativa de recurrir al Símbolo de sistema, lo cierto es que tienes otra aplicación nativa en Windows que puedes usar en cualquier momento si quieres. Simplemente debes hacer uso de Windows PowerShell. Te servirá a la perfección para hacer una limpieza de los registros de caché de DNS en un PC Windows 10 u 11. Por lo que no hay ningún inconveniente.</p>
+<p>Una vez aclarado este punto, solo hace falta que vayas a la barra de búsqueda del sistema operativo y escribir el nombre de esta herramienta. Cuando esté ejecutada en tu PC, entonces, será el momento de escribir el siguiente comando en su línea de comandos: <code>Clear-DnsClientCache</code>. Una vez hecho esto, toca en enter de tu teclado para que se ejecute la orden. De esta manera conseguirás vaciar la caché en cuestión de segundos en tu equipo Windows. Por lo que se convierte en otra de las alternativas que tienes disponibles en este sistema.</p>
+<h3 id="como-hacerlo-en-linux">Cómo hacerlo en Linux</h3>
+<p>Si en tu ordenador utilizas alguna distribución de Linux, como puede ser Ubuntu, también vas a poder borrar la caché DNS fácilmente. En este caso también vas a tener que ir a la Terminal y ejecutar un comando para ello. Vas a tener que disponer de permisos de administrador, ya que solicitará la contraseña para ello.</p>
+<p>Una vez estés en la Terminal, simplemente tienes que ejecutar el comando sudo systemd-resolve –statistics. Te pedirá la clave y automáticamente se ejecutará. Es un proceso rápido y verás que se ha borrado la caché que hubiera almacenada en el sistema previamente.</p>
+<p>Por otro lado, si estás utilizando una distribución Linux que no sea Ubuntu, ten en cuenta que este método cambia. Por lo que debes seguir otros pasos, o más bien, ejecutar otro comando diferente para vaciar la caché de DNS de tu equipo. Solamente tienes que abrir la interfaz de línea de comandos y ejecutar lo siguiente: sudo /etc/init.d/dns-clean start. Una vez que se haya ejecutado en tu equipo, no tendrás más problema con la caché, al menos durante un tiempo.</p>
+<h3 id="como-realizar-la-limpieza-en-mac">Cómo realizar la limpieza en Mac</h3>
+<p>El proceso no se diferencia en gran medida de como se hace en Windows. En ambos sistemas operativos se realiza por línea de comandos. Para ellos seguiremos los siguientes pasos.</p>
+<ul>
+<li>Abrimos el LaunchPad en el Dock del sistema, y escribiremos “Terminal” en la barra de búsqueda.</li>
+<li>Nos cargará el Terminal, que es la entrada de comandos de MAC. En esta escribiremos el siguiente comando:</li>
+<li><code>sudo dscacheutil – flushcache; sudo killall -HUP mDNSResponder</code> y pulsamos intro.</li>
+<li>Acto seguido nos pedirá introducir nuestra contraseña de administrador.</li>
+<li>Pulsamos Intro de nuevo y este procederá con el borrado de la caché DNS. Después de esto ya podemos cerrar el terminal.</li>
+</ul>
+<p>Otra forma que podemos usar en MAC, es mediante alguna herramienta externa, que hace esto de forma rápida y simple. En este caso, recomendamos <strong>CleanMyMac</strong>, que es una aplicación que está certificada por Apple, lo cual es un sello de garantía. Por si tenemos alguna duda con respecto a ella.</p>
+<p>Limpiar la caché DNS está dentro de sus funciones, y para hacerlo haremos los siguientes pasos:</p>
+<ul>
+<li>Abrimos la aplicación.</li>
+<li>Hacemos clic en el apartado de Mantenimiento de la barra lateral.</li>
+<li>Seleccionamos Limpiar Caché DNS.</li>
+<li>Hacemos clic en Ejecutar.</li>
+</ul>
+<p>Cabe destacar que esta aplicación que mencionamos, se puede usar con muchos otros fines en el sistema operativo de Apple, como por ejemplo la liberación de espacio o tareas de supervisión. Y esto es todo. La DNS está completamente limpia, y todo debería funcionar con normalidad.</p>
+<h2 id="limpiar-la-cache-dns-en-navegadores-web">Limpiar la caché DNS en navegadores web</h2>
+<p>Además de las anteriores alternativas, también te puede servir de gran ayuda vaciar la caché DNS del navegador web que utilizas constantemente en tu PC. Para que puedas completar esta acción de manera eficaz, sin cometer errores, aquí puedes encontrar los pasos a seguir para algunos de las aplicaciones más utilizadas por los usuarios.</p>
+<h3 id="en-mozilla-firefox">En Mozilla Firefox</h3>
+<p>Para limpiar la caché DNS en el navegador Firefox, tenemos que poner en la barra de direcciones el popular «about:config» para acceder a la administración avanzada. Una vez dentro, buscamos <code>«network.dnsCacheExpiration»</code> y el <code>«network.dnsCacheExpirationGracePeriod»</code> y cambiar el valor que está por defecto en <strong>60</strong>, en el <strong>valor 0</strong>, en ambas entradas. Es importante hacerla en ambas y no solo en una de ellas.</p>
+<p><img alt="cache_dns_mozilla_firefox" src="../../img/cache_dns_mozilla_firefox.PNG" /></p>
+<h3 id="en-google-chrome-y-opera">En Google Chrome y Opera</h3>
+<p>Limpiar la caché DNS en el navegador Chrome y Opera es idéntico y bastante similar al anterior. Tenemos que irnos a la dirección interna <code>«chrome://net-internals/#dns»</code> poniéndolo en la barra de direcciones. Una vez dentro, tenemos que pinchar en el botón <strong>«Clear host caché»</strong>:
+<img alt="cache_dns_chrome_1" src="../../img/cache_dns_chrome_1.PNG" /></p>
+<p><img alt="cache_dns_opera_1" src="../../img/cache_dns_opera_1.jpg" /></p>
+<p>Si queremos limpiar también todas las conexiones que están activas actualmente en Chrome, podemos irnos a la sección de <strong>«Sockets»</strong> que tenemos en la parte izquierda, y pinchamos en <code>«Flush socket pools»</code>.</p>
+<p><img alt="cache_dns_chrome_2" src="../../img/cache_dns_chrome_2.PNG" /></p>
+<p><img alt="cache_dns_opera_2" src="../../img/cache_dns_opera_2.jpg" /></p>
+<p>Además, en los <strong>dispositivos Android</strong> también se puede llegar a vaciar esta caché. Para ello, hay que abrir el navegador y escribir la siguiente dirección: <code>chrome://net-internals/#dns</code>. De esta forma, podrás ir a la página de DNS y tocar en ‘Borrar caché de host. Con estos pasos, podrás vaciarla en tu teléfono.</p>
+<h2 id="conclusiones-para-optar-por-borrar-la-cache-dns">Conclusiones para optar por borrar la caché DNS</h2>
+<p>Cuando tenemos problemas de conectividad con Internet, es muy importante aislar el error. En caso de tener conectividad con el servidor DNS, pero las webs no nos funcionan correctamente, es muy probable que el problema lo tengamos con la caché de DNS.</p>
+<p>Tal y como habéis podido ver, es muy fácil y útil limpiar la caché DNS si tenemos problemas de navegación, pese a que puede parecer algo desalentador realizar todos estos pasos. No obstante, también sería recomendable que, si tenemos problemas de DNS, no solo limpiar la caché DNS, sino que también podríamos cambiar los servidores DNS que estamos utilizando por otros mejores. Siempre es recomendable hacer uso de los DNS de Cloudflare o de Google, ya que normalmente los DNS de los operadores limitan las webs de descargas, y con estos DNS alternativos no tendremos problemas. Además, a veces incluso lograremos una mayor velocidad de Internet.</p>
+<p>Últimamente los navegadores web están apostando por la tecnología <strong>DNS over HTTPS (DoH)</strong>, por tanto, las resoluciones DNS se quedan en el propio navegador, y no en la caché DNS del ordenador, todo es gestionado desde el navegador web. Por este motivo es tan importante que también sepas cómo eliminar la caché DNS en los propios navegadores web, ya que, en la gran mayoría de los casos, nosotros necesitaremos resolver dominios a través del navegador y no con programas u otras herramientas externas.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
