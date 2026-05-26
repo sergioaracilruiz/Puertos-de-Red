@@ -9,7 +9,7 @@ La combinación de una **dirección IP** y un **número de puerto** TCP o UDP se
 - El puerto 53 se utiliza para las solicitudes de resolución de nombres de dominio (DNS).
 - El puerto 22 se asocia con el protocolo SSH para la administración segura de sistemas.
 
-![TCP-IP_Suite_protocolos](../img/TCP-IP_Suite_protocolos.jpg)
+![TCP-IP_Suite_protocolos](../img/TCP-IP_Suite_protocolos.jpg){.markdown-image}
 
 **TCP (Protocolo de Control de Transmisión)** y **UDP (Protocolo de Datagramas de Usuario)** son dos de los protocolos de transporte más utilizados en Internet. TCP es un protocolo orientado a la conexión que garantiza la entrega de datos en el orden correcto y maneja la retransmisión de datos en caso de pérdida o error, es decir, controla y verifica que los datos lleguen al destinatario. UDP, por otro lado, es un protocolo sin conexión que no garantiza la entrega de datos ni el orden, pero es más rápido y eficiente para aplicaciones que no requieren una comunicación fiable, como la transmisión de video en tiempo real o juegos en línea.
 

@@ -6,6 +6,25 @@ img {
   display: block;
   margin: 0 auto;
 }
+
+
+/* Ajuste general de imágenes en móviles */
+.markdown-image {
+  display: block;
+  margin: 1rem auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ajustes específicos para pantallas pequeñas */
+@media (max-width: 768px) {
+  .markdown-image {
+    max-width: 90%;
+  }
+}
+
+
+
 p {
   text-align: justify;
   hyphens: auto;
@@ -22,7 +41,8 @@ h3 {
 }
 
 /*MkDocs-page-to-pdf Due to a Chromium bug, a blank page may appear at the end of the PDF. To fix this, 
-add the following CSS to your */
+add the following CSS to your 
 body {
     contain: strict;
 }
+    */
