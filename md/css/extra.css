@@ -20,3 +20,9 @@ h3 {
   text-decoration: underline;
   margin-left: 20px; /* añade sangría */
 }
+
+/*MkDocs-page-to-pdf Due to a Chromium bug, a blank page may appear at the end of the PDF. To fix this, 
+add the following CSS to your */
+body {
+    contain: strict;
+}
